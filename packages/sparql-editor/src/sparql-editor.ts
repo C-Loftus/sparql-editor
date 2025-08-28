@@ -39,6 +39,8 @@ import {
   getPredicatesFallback,
 } from "./metadata";
 import {SparqlOverview} from "@sib-swiss/sparql-overview";
+import MapPlugin from "./map-plugin";
+import "leaflet/dist/leaflet.css";
 
 type Autocompleter = {name: string} & Partial<CompleterConfig>;
 const addSlashAtEnd = (str: string) => (str.endsWith("/") ? str : `${str}/`);
@@ -299,6 +301,7 @@ export class SparqlEditor extends HTMLElement {
 
     // Instantiate YASGUI editor
     const editorEl = this.querySelector("#yasgui") as HTMLElement;
+    Yasgui.Yasr.plugins.Map = MapPlugin;
     this.yasgui = new Yasgui(editorEl, {
       // Prevents conflicts when deploying multiple editors in the same domain:
       persistenceId: `yasgui_${window.location.pathname.replace(/\//g, "")}`,
