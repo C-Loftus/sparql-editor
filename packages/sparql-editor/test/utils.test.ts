@@ -14,7 +14,7 @@ describe("SPARQL utils", () => {
   it("Get VoID description for UniProt endpoint", async () => {
     const res = await getVoidDescription("https://sparql.uniprot.org/");
     expect(res.length).toBeGreaterThan(0);
-  });
+  }, 20000);
 
   it("Get example queries for Bgee endpoint", async () => {
     const res = await getExampleQueries("https://www.bgee.org/sparql/");
