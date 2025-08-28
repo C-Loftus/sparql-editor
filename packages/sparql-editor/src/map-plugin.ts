@@ -29,7 +29,6 @@ export default class MapPlugin implements Yasr.Plugin<never> {
     const bindings = this.yasr.results?.getBindings();
     if (!bindings) return false;
 
-    // Check if any of the results have a WKT literal
     return bindings.some(row => Object.values(row).some(value => value.datatype?.value === WKT_DATATYPE_URI));
   }
 
