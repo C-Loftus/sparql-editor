@@ -30,7 +30,7 @@ export default class MapPlugin implements Yasr.Plugin<never> {
     if (!bindings) return false;
 
     // Check if any of the results have a WKT literal
-    return bindings.some(row => Object.values(row).some(value => value.datatype === WKT_DATATYPE_URI));
+    return bindings.some(row => Object.values(row).some(value => value.datatype?.value === WKT_DATATYPE_URI));
   }
 
   // This method is called by YASR to draw the plugin's output.
@@ -53,7 +53,7 @@ export default class MapPlugin implements Yasr.Plugin<never> {
     if (bindings.length > 0) {
       const firstRow = bindings[0];
       for (const key in firstRow) {
-        if (firstRow[key].datatype === WKT_DATATYPE_URI) {
+        if (firstRow[key].datatype?.value === WKT_DATATYPE_URI) {
           wktColumn = key;
           break;
         }
